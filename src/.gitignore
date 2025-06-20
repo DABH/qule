@@ -1,0 +1,15 @@
+*.swp
+CMakeCache.txt
+CMakeFiles/
+*bak
+version
+version.cu
+cmake-build-debug/*
+cmake-build-debug-mingw/*
+cmake_install.cmake
+build/*
+qule
+gendata
+*.a
+**/Makefile
+test.txt

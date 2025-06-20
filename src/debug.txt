@@ -1,0 +1,84 @@
+
+Disentagling submatrices.
+The minimum with 3 layers after 0 iterations is 0.000502941 calculated in 0.00912925 seconds
+The minimum with 3 layers after 64 iterations is 8.01786e-13
+--- 0.295258 seconds elapsed during the decomposition ---
+
+Sub-disentaglement was succesfull.
+
+The error of the decomposition after finalyzing gates is 2.81833 with 18 layers containing 37 U3 gates and 17 CNOT gates
+***************************************************************
+Try to simplify layers
+***************************************************************
+
+
+************************************
+After some additional 2-qubit decompositions the initial gate structure with 17 two-qubit gates simplified to a structure containing 17 two-qubit gates
+************************************
+
+***************************************************************
+Final fine tuning of the parameters in the 3-qubit decomposition
+***************************************************************
+The minimum with 54 layers after 0 iterations is 6.17287e-05 calculated in 0.0900111 seconds
+The minimum with 54 layers after 4 iterations is 5.75096e-14
+In the decomposition with error = 5.3249e-07 were used 54 gates with:
+37 U3 gates,
+17 CNOT gates,
+
+--- In total 10.3566 seconds elapsed during the decomposition ---
+
+The gates in the list of gates:
+0th gate: U3 on target qubit: 0 and with parameters theta = 12.2017, phi = 0 and lambda = 0.0603393
+1th gate: U3 on target qubit: 2 and with parameters theta = 2.05111, phi = 0 and lambda = 2.62713
+2th gate: CNOT with control qubit: 2 and target qubit: 0
+3th gate: U3 on target qubit: 1 and with parameters theta = 2.46002, phi = 0 and lambda = 2.83011
+4th gate: U3 on target qubit: 2 and with parameters theta = 9.50121, phi = 0 and lambda = 4.20648
+5th gate: CNOT with control qubit: 2 and target qubit: 1
+6th gate: U3 on target qubit: 0 and with parameters theta = 7.3973, phi = 0 and lambda = 5.89637
+7th gate: U3 on target qubit: 2 and with parameters theta = 3.2339, phi = 0 and lambda = 1.29545
+8th gate: CNOT with control qubit: 2 and target qubit: 0
+9th gate: U3 on target qubit: 1 and with parameters theta = 9.4642, phi = 0 and lambda = 5.12206
+10th gate: U3 on target qubit: 2 and with parameters theta = 10.4146, phi = 0 and lambda = 3.69835
+11th gate: CNOT with control qubit: 2 and target qubit: 1
+12th gate: U3 on target qubit: 0 and with parameters theta = 7.51301, phi = 0 and lambda = 2.96297
+13th gate: U3 on target qubit: 2 and with parameters theta = 12.1469, phi = 0 and lambda = 2.4563
+14th gate: CNOT with control qubit: 2 and target qubit: 0
+15th gate: U3 on target qubit: 1 and with parameters theta = 10.7229, phi = 0 and lambda = 1.91258
+16th gate: U3 on target qubit: 2 and with parameters theta = 7.11832, phi = 0 and lambda = 0.0680324
+17th gate: CNOT with control qubit: 2 and target qubit: 1
+18th gate: U3 on target qubit: 0 and with parameters theta = 11.2617, phi = 0 and lambda = 4.13387
+19th gate: U3 on target qubit: 2 and with parameters theta = 1.42985, phi = 0 and lambda = 2.14038
+20th gate: CNOT with control qubit: 2 and target qubit: 0
+21th gate: U3 on target qubit: 1 and with parameters theta = 8.82067, phi = 0 and lambda = 2.19747
+22th gate: U3 on target qubit: 2 and with parameters theta = -0.475839, phi = 0 and lambda = 0.416568
+23th gate: CNOT with control qubit: 2 and target qubit: 1
+24th gate: U3 on target qubit: 0 and with parameters theta = 3.39082, phi = 0 and lambda = 4.90508
+25th gate: U3 on target qubit: 2 and with parameters theta = 5.40869, phi = 0 and lambda = 1.85641
+26th gate: CNOT with control qubit: 2 and target qubit: 0
+27th gate: U3 on target qubit: 1 and with parameters theta = 9.14703, phi = 0 and lambda = 3.9225
+28th gate: U3 on target qubit: 2 and with parameters theta = 1.77399, phi = 0 and lambda = 1.09663
+29th gate: CNOT with control qubit: 2 and target qubit: 1
+30th gate: U3 on target qubit: 0 and with parameters theta = 2.4162, phi = 0 and lambda = 4.80185
+31th gate: U3 on target qubit: 2 and with parameters theta = 8.53627, phi = 0 and lambda = 2.37608
+32th gate: CNOT with control qubit: 2 and target qubit: 0
+33th gate: U3 on target qubit: 1 and with parameters theta = 9.16532, phi = 0 and lambda = 5.20725
+34th gate: U3 on target qubit: 2 and with parameters theta = 2.56854, phi = 0 and lambda = 0.630052
+35th gate: CNOT with control qubit: 2 and target qubit: 1
+36th gate: U3 on target qubit: 0 and with parameters theta = 8.91575, phi = 0 and lambda = 2.27227
+37th gate: U3 on target qubit: 2 and with parameters theta = 8.4946, phi = 0 and lambda = 5.18128
+38th gate: CNOT with control qubit: 2 and target qubit: 0
+39th gate: U3 on target qubit: 1 and with parameters theta = 8.20084, phi = 0 and lambda = 0.976297
+40th gate: U3 on target qubit: 2 and with parameters theta = 2.36903, phi = 0 and lambda = 4.81147
+41th gate: CNOT with control qubit: 2 and target qubit: 1
+42th gate: U3 on target qubit: 0 and with parameters theta = 6.43635, phi = 0 and lambda = 3.23145
+43th gate: U3 on target qubit: 1 and with parameters theta = 3.08536, phi = 0 and lambda = 2.47203
+44th gate: CNOT with control qubit: 1 and target qubit: 0
+45th gate: U3 on target qubit: 0 and with parameters theta = 9.03036, phi = 0 and lambda = 0.491996
+46th gate: U3 on target qubit: 1 and with parameters theta = 4.15186, phi = 0 and lambda = 4.9651
+47th gate: CNOT with control qubit: 1 and target qubit: 0
+48th gate: U3 on target qubit: 0 and with parameters theta = 9.0416, phi = 0 and lambda = 5.06413
+49th gate: U3 on target qubit: 1 and with parameters theta = 8.69748, phi = 0 and lambda = 0.38331
+50th gate: CNOT with control qubit: 1 and target qubit: 0
+51th gate: U3 on target qubit: 0 and with parameters theta = 2.35184, phi = 4.47962 and lambda = 3.77116
+52th gate: U3 on target qubit: 1 and with parameters theta = 3.04616, phi = 5.68165 and lambda = 4.14016
+53th gate: U3 on target qubit: 2 and with parameters theta = 0.869864, phi = 2.79612 and lambda = 0.877028
