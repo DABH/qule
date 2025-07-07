@@ -12,6 +12,8 @@ Please [cite](#citation) our paper if you find our work useful.
 
 ## Prerequsites and Setup
 
+QuLe has been test on Windows and Linux.  Compilation on Mac should be possible, but will require (1) installing a suitable compiler that supports OpenMP (e.g., `brew install gcc`) and using that compiler for CMake (e.g., `export CC=gcc-15 && export CXX=g++-15`), and (2) ensuring paths for libraries like Armadillo are specified correctly.  A PR is welcomed to make Mac work smoothly out of the box.
+
 QuLe depends on:
 - [Armadillo](https://arma.sourceforge.net/download.html)
 - [Boost](https://www.boost.org/) (Note, this can often be installed more easily via package managers like `apt` or `brew`)
