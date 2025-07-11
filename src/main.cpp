@@ -114,15 +114,17 @@ int main(int argc, const char *argv[])
 	add_noise = vm.count("add_noise");
 	DEBUG_FLAG = vm.count("debug");
 
-	// arma::cx_mat X, Y, U0, U;
-	arma::cx_mat X, Y, U0; // only to test NM, change back to the above declaration when finished
+	arma::cx_mat X, Y, U0, U;
+	// arma::cx_mat X, Y, U0; // only to test NM, change back to the above declaration when finished
 	// TODO: Add the other ventura matrices
 	//  Do underconstrained test...
 	if (matrix_type == "ex_const")
 	{
-		arma::cx_mat X = LoadMatrix("toronto_ventura_qft_exactly_constrained_X"),
-					 Y = LoadMatrix("toronto_ventura_qft_exactly_constrained_Y"),
-					 U0 = LoadMatrix("toronto_ventura_qft_exactly_constrained_U0");
+		X = LoadMatrix("toronto_ventura_qft_exactly_constrained_X");
+		Y = LoadMatrix("toronto_ventura_qft_exactly_constrained_Y");
+		U0 = LoadMatrix("toronto_ventura_qft_exactly_constrained_U0");
+		Utarget = U0;
+
 	}
 
 	std::cout << "Matrix size, n = " << n << endl;
@@ -130,7 +132,7 @@ int main(int argc, const char *argv[])
 	std::cout << "Printing data in " << output_name << endl;
 
 	// If the user didn't specify a number of training examples, set size of X to n
-	if (num_x == NULL)
+	if (num_x == 0)
 	{
 		num_x = n;
 	}
@@ -249,15 +251,24 @@ int main(int argc, const char *argv[])
 		}
 
 		// Generate a random X and enforce that cond(X) <= 1000
-		int condx = 1000000;
-		// while(condx>user_def_cond_x){
-		// TODO: Is there an edge case here?
-		while (!(condx >= condx_lower && condx <= condx_upper))
-		{ // condx>condx_upper && condx > condx_lower){
-			// arma_rng::set_seed_random();
-			X = randn<cx_mat>(n, num_x) + i1 * randn<cx_mat>(n, num_x);
-			for (int k = 0; k < num_x; ++k)
-				X.col(k) /= norm(X.col(k), 2);
+		// Skip random X generation for ex_const case since X is loaded from file
+		int condx = 1000000;  // Declare condx outside the if block so it's accessible later
+		if (matrix_type != "ex_const")
+		{
+			// while(condx>user_def_cond_x){
+			// TODO: Is there an edge case here?
+			while (!(condx >= condx_lower && condx <= condx_upper))
+			{ // condx>condx_upper && condx > condx_lower){
+				// arma_rng::set_seed_random();
+				X = randn<cx_mat>(n, num_x) + i1 * randn<cx_mat>(n, num_x);
+				for (int k = 0; k < num_x; ++k)
+					X.col(k) /= norm(X.col(k), 2);
+				condx = cond(X);
+			}
+		}
+		else
+		{
+			// For ex_const case, get the condition number of the loaded X matrix
 			condx = cond(X);
 		}
 		// std::cout << X << endl;
@@ -386,12 +397,12 @@ int main(int argc, const char *argv[])
 				high_resolution_clock::time_point t1 = high_resolution_clock::now();
 				pair<cx_mat, int> r = (*DescentLearningAlgorithm).Learn(U0.row(i), X, Y.row(i));
 				U.row(i) = r.first;
-                if(r.second == -1)
-                    stalls[test] = 1;
-                else
+				if(r.second == -1)
+					stalls[test] = 1;
+				else
 					// counts[test] += r.second;
 					// change to max to account for the fact that some rows may take longer to converge than others
-    				counts[test] = max(counts[test], r.second);
+					counts[test] = max(counts[test], r.second);
 				high_resolution_clock::time_point t2 = high_resolution_clock::now();
 				wall_times[test] += duration_cast<microseconds>(t2 - t1).count();
 			}
@@ -401,12 +412,12 @@ int main(int argc, const char *argv[])
 			high_resolution_clock::time_point t1 = high_resolution_clock::now();
 			pair<cx_mat, int> r = (*DescentLearningAlgorithm).Learn(U0, X, Y_noise);
 			U = r.first;
-            if(r.second == -1)
-                stalls[test] = 1;
-            else
-			    counts[test] = r.second;
-            high_resolution_clock::time_point t2 = high_resolution_clock::now();
-            wall_times[test] = duration_cast<microseconds>(t2 - t1).count();
+			if(r.second == -1)
+				stalls[test] = 1;
+			else
+				counts[test] = r.second;
+			high_resolution_clock::time_point t2 = high_resolution_clock::now();
+			wall_times[test] = duration_cast<microseconds>(t2 - t1).count();
 
 			r = (*DescentLearningAlgorithm).Learn(U0, X, Y);
 			U_nonoise = r.first;
@@ -416,10 +427,10 @@ int main(int argc, const char *argv[])
 			high_resolution_clock::time_point t1 = high_resolution_clock::now();
 			pair<cx_mat, int> r = (*DescentLearningAlgorithm).Learn(U0, X, Y);
 			U = r.first;
-            if(r.second == -1)
-                stalls[test] = 1;
-            else
-			    counts[test] = r.second;
+			if(r.second == -1)
+				stalls[test] = 1;
+			else
+				counts[test] = r.second;
 			high_resolution_clock::time_point t2 = high_resolution_clock::now();
 			wall_times[test] = duration_cast<microseconds>(t2 - t1).count();
 		}
@@ -562,8 +573,8 @@ int main(int argc, const char *argv[])
 	fprintf(logptr, "%f",  froDiffBetweenNoiseAndClean);
 
 	std::fclose(logptr);
-    if (matrix_type != "rand")
-        std::fclose(logptr_indv);
+	if (matrix_type != "rand")
+		std::fclose(logptr_indv);
 	// BEN: A test of Newtons Method
 	/*Function* MyObjective=new OrthogonalProcrustes();
 	vector<Function*> MyConstraints={};
@@ -698,7 +709,7 @@ vector<vector<cx_double>> ExportMatrix(const cx_mat &input)
 cx_mat LoadMatrix(const string &name)
 {
 	vector<vector<cx_double>> input;
-	std::ifstream ifs("../../../data/" + name + ".txt");
+	std::ifstream ifs("../data/" + name + ".txt");
 	boost::archive::text_iarchive ia(ifs);
 	ia &input;
 	return BuildMatrix(input);
