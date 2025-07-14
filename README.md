@@ -7,7 +7,7 @@ Finding Quantum Operators Through Machine Learning
 QuLe (rhymes with "mule") is a program for generating quantum operators (in the form of unitary matrices) that map given input states to given output states of a quantum computer (as closely as possible).
 When combined with unitary factorization algorithms (as included in this repository and described in our paper), QuLe enables end-to-end synthesis of quantum algorithms: starting with a set of desired input/output pairs, the end result of our pipeline can be a quantum circuit diagram that closely approximates the desired behavior.
 
-QuLe is introduced and explained in the research paper paper: (Coming Soon).
+QuLe is introduced and explained in the research paper: (Coming Soon).
 Please [cite](#citation) our paper if you find our work useful.
 
 ## Prerequsites and Setup
