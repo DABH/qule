@@ -62,7 +62,7 @@ QuLe is licensed under the University of Illinois / NCSA Open Source License.  S
 
 If you use QuLe in your research or would otherwise like to reference it, please use the following citation:
 
-Yuxin Huang, Benjamin Grossman-Ponemon, David Hyde.  "Automated Synthesis of Quantum Algorithms via Classical Numerical Techniques."  ACM Transactions on Quantum Computing.  In press (2025).
+Yuxin Huang, Benjamin E. Grossman-Ponemon, David A. B. Hyde.  "Automated Synthesis of Quantum Algorithms via Classical Numerical Techniques."  ACM Transactions on Quantum Computing 6:4 (2025). [https://doi.org/10.1145/3757068](https://doi.org/10.1145/3757068).
 
 ## Sponsorhsip
 
